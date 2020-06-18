@@ -1,6 +1,7 @@
 ActiveSupport::Reloader.to_prepare do
   require_dependency 'models/enumeration_patch'
   require_dependency 'models/issue_patch'
+  require_dependency 'helpers/issues_helper_patch'
 end
 
 Redmine::Plugin.register :redmine_typologies do
