@@ -11,4 +11,7 @@ Redmine::Plugin.register :redmine_typologies do
   version '0.0.1'
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
+  project_module :typologies do
+    permission :modify_typology, {}
+  end
 end
