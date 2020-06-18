@@ -4,7 +4,31 @@ RSpec.describe IssuesController, type: :controller do
 
   render_views
 
-  fixtures :users, :enumerations, :projects, :trackers, :issues
+  fixtures :users, :enumerations, :projects, :trackers, :issues,
+            :email_addresses, :user_preferences,
+            :roles,
+            :members,
+            :member_roles,
+            :issue_statuses,
+            :issue_relations,
+            :versions,
+            :projects_trackers,
+            :issue_categories,
+            :enabled_modules,
+            :enumerations,
+            :attachments,
+            :workflows,
+            :custom_fields,
+            :custom_values,
+            :custom_fields_projects,
+            :custom_fields_trackers,
+            :time_entries,
+            :journals,
+            :journal_details,
+            :queries,
+            :repositories,
+            :changesets,
+            :watchers
 
   let(:user) { User.find(1) }
   let(:project) { Project.find(1) }
