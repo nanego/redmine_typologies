@@ -1,3 +1,8 @@
+ActiveSupport::Reloader.to_prepare do
+  require_dependency 'models/enumeration_patch'
+  require_dependency 'models/issue_patch'
+end
+
 Redmine::Plugin.register :redmine_typologies do
   name 'Redmine Issue Typologies plugin'
   author 'Vincent ROBERT'
