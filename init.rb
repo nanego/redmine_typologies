@@ -1,7 +1,9 @@
 ActiveSupport::Reloader.to_prepare do
   require_dependency 'models/enumeration_patch'
   require_dependency 'models/issue_patch'
+  require_dependency 'models/project_patch'
   require_dependency 'helpers/issues_helper_patch'
+  require_dependency 'helpers/projects_helper_patch'
 end
 
 Redmine::Plugin.register :redmine_typologies do
@@ -12,6 +14,6 @@ Redmine::Plugin.register :redmine_typologies do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
   project_module :typologies do
-    permission :modify_typology, {}
+    permission :set_project_typologies, {}
   end
 end

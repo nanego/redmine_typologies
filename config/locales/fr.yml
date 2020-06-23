@@ -3,3 +3,4 @@ fr:
   field_typology: Typologie
   label_typology_updated: Typologie changée
   project_module_typologies: Typologies
+  permission_set_project_typologies: Modifier les typologies par projet

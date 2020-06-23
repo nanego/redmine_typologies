@@ -1,0 +1,33 @@
+<div class="contextual">
+  <% if User.current.admin? %>
+    <%= link_to l(:label_administration), enumerations_path, :class => "icon icon-settings" %>
+  <% end %>
+</div>
+
+<%= form_tag(project_typologies_enumerations_path(@project), :method => :put, :class => "tabular") do %>
+
+  <table class="list">
+    <thead>
+    <tr>
+      <th><%= l(:field_name) %></th>
+      <th><%= toggle_checkboxes_link('input.enumerations_active') %> <%= l(:field_active) %></th>
+    </tr>
+    </thead>
+
+    <% Typology.active.each do |typology| %>
+      <tr>
+        <td class="name">
+          <%= typology %>
+        </td>
+        <td>
+          <%= check_box_tag "typologies_ids[#{typology.id}]",
+                            "1",
+                            @project.excluded_typologies.exclude?(typology),
+                            {class: 'enumerations_active'} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= submit_tag l(:button_save) %>
+<% end %>
