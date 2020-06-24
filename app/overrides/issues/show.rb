@@ -4,6 +4,6 @@ Deface::Override.new :virtual_path  => 'issues/show',
                      :insert_top    => 'div.attributes',
                      :text          => <<TYPO_FIELD
 <%= issue_fields_rows do |rows|
-  rows.left l(:field_typology), @issue.typology.name, :class => 'typology'
+  rows.left l(:field_typology), @issue.typology.try(:name), :class => 'typology'
 end %>
 TYPO_FIELD
