@@ -11,7 +11,7 @@ class ProjectTypologiesEnumerationsController < ApplicationController
   end
 
   private
-  
+
   def check_permission
     allowed = User.current.allowed_to?(:set_project_typologies, @project)
     if allowed

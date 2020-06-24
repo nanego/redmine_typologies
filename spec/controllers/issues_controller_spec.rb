@@ -38,12 +38,6 @@ RSpec.describe IssuesController, type: :controller do
   end
 
   describe "new issue form" do
-    it "allows user to select a typology" do
-      get :new
-      expect(response).to be_successful
-      expect(response.body).to have_selector("label:contains('Typology')")
-    end
-
     it "hides typology field if module is disabled" do
       project.disable_module! :typologies
       get :new, params: {project_id: project.id}
