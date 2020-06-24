@@ -11,6 +11,7 @@
     <tr>
       <th><%= l(:field_name) %></th>
       <th><%= toggle_checkboxes_link('input.enumerations_active') %> <%= l(:field_active) %></th>
+      <th><%= l(:field_tracker) %></th>
     </tr>
     </thead>
 
@@ -20,10 +21,18 @@
           <%= typology %>
         </td>
         <td>
-          <%= check_box_tag "typologies_ids[#{typology.id}]",
+          <%= check_box_tag "typologies_ids[#{typology.id}][active]",
                             "1",
                             @project.excluded_typologies.exclude?(typology),
                             {class: 'enumerations_active'} %>
+        </td>
+        <td class="tracker">
+          <%= select_tag "typologies_ids[#{typology.id}][tracker]",
+                         options_from_collection_for_select(@project.trackers.sorted,
+                                                            "id", "name",
+                                                            @project.tracker_for(typology: typology).try(:id)),
+                         include_blank: true
+          %>
         </td>
       </tr>
     <% end %>

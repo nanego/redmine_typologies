@@ -3,10 +3,10 @@ class ProjectTypologiesEnumerationsController < ApplicationController
   before_action :check_permission
 
   def update
-    enabled_typologies_ids = params[:typologies_ids].present? ? params[:typologies_ids].keys : []
-    if @project.update_typologies(enabled_typologies_ids)
+    if @project.update_typologies(params[:typologies_ids])
       flash[:notice] = l(:notice_successful_update)
     end
+
     redirect_to settings_project_path(@project, :tab => 'typologies')
   end
 
