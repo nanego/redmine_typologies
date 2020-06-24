@@ -6,7 +6,7 @@ class Project
   has_many :excluded_typologies, through: :typology_exclusions, source: :typology
 
   def typologies
-    Typology.active - excluded_typologies
+    Typology.active.sorted - excluded_typologies
   end
 
   def update_typologies(checked_typologies_ids)

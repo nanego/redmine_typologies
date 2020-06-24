@@ -2,6 +2,7 @@ ActiveSupport::Reloader.to_prepare do
   require_dependency 'models/enumeration_patch'
   require_dependency 'models/issue_patch'
   require_dependency 'models/project_patch'
+  require_dependency 'models/issue_query_patch'
   require_dependency 'helpers/issues_helper_patch'
   require_dependency 'helpers/projects_helper_patch'
 end
