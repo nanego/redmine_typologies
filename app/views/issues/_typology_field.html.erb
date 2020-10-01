@@ -1,7 +1,7 @@
 <% if @issue.safe_attribute?('typology_id') && (@project.present? && @project.module_enabled?(:typologies)) %>
   <p>
     <%= f.select :typology_id, @project.typologies.collect { |p| [p.name, p.id] },
-                 {include_blank: true, required: false},
+                 {include_blank: true, required: @issue.required_attribute?('typology_id')},
                  onchange: "updateIssueFrom('#{escape_javascript update_issue_form_path(@project, @issue)}', this)" %>
   </p>
 <% end %>
