@@ -1,9 +1,11 @@
 <% if @issue.safe_attribute?('typology_id') && (@project.present? && @project.module_enabled?(:typologies)) %>
   <% typologies = @issue.project.project_typologies.reject { |t| t.trackers.present? && t.trackers.exclude?(@issue.tracker) }.map(&:typology) %>
-  <p>
-    <%= f.select :typology_id,
-                 typologies.collect { |t| [t.name, t.id] },
-                 include_blank: true,
-                 required: @issue.required_attribute?('typology_id') %>
-  </p>
+  <% if typologies.present? %>
+    <p>
+      <%= f.select :typology_id,
+                   typologies.collect { |t| [t.name, t.id] },
+                   include_blank: true,
+                   required: @issue.required_attribute?('typology_id') %>
+    </p>
+  <% end %>
 <% end %>
