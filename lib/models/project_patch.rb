@@ -2,7 +2,7 @@ require_dependency 'project'
 
 class Project
 
-  has_many :project_typologies
+  has_many :project_typologies, dependent: :destroy
 
   def typologies
     Typology.active.sorted - excluded_typologies

@@ -3,7 +3,7 @@ require_dependency "enumeration"
 class Typology < Enumeration
 
   has_many :issues, :foreign_key => 'typology_id'
-  has_many :project_typologies
+  has_many :project_typologies, dependent: :destroy
 
   after_destroy {|typology| typology.class.compute_position_names}
   after_save {|typology| typology.class.compute_position_names if (typology.saved_change_to_position? && typology.position) || typology.saved_change_to_active? || typology.saved_change_to_is_default?}

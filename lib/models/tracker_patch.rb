@@ -8,6 +8,6 @@ class Tracker
   CORE_FIELDS = %w(assigned_to_id category_id fixed_version_id parent_issue_id start_date due_date estimated_hours done_ratio description typology_id).freeze
   CORE_FIELDS_ALL = (CORE_FIELDS_UNDISABLABLE + CORE_FIELDS).freeze
 
-  has_and_belongs_to_many :projects_typologies
+  has_and_belongs_to_many :project_typologies
 
 end
