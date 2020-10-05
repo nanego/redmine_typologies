@@ -1,6 +1,7 @@
 require_dependency "enumeration"
 
 class Typology < Enumeration
+
   has_many :issues, :foreign_key => 'typology_id'
   has_many :project_typologies
 

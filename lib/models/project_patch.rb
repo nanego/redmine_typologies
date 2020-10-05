@@ -18,14 +18,14 @@ class Project
       association = ProjectTypology.find_or_create_by(typology_id: typology_id,
                                        project: self)
       association.active = values[:active].present? && values[:active] == '1'
-      association.tracker_id = values[:tracker].present? ? values[:tracker].to_i : nil
+      association.tracker_ids = values[:tracker_ids].present? ? values[:tracker_ids] : []
       association.save
     end
   end
 
-  def tracker_for(typology:)
-    association = ProjectTypology.where(project: self, typology: typology).first
-    association.blank? ? nil : association.tracker
+  def trackers_for(typology:)
+    project_typology = ProjectTypology.where(project: self, typology: typology).first
+    project_typology.blank? ? [] : project_typology.trackers
   end
 
 end

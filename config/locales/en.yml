@@ -3,3 +3,5 @@ en:
   field_typology: Typology
   label_typology_updated: Typology updated
   project_module_typologies: Typologies
+  permission_set_project_typologies: Update project typologies
+  field_trackers: Trackers

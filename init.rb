@@ -6,7 +6,6 @@ ActiveSupport::Reloader.to_prepare do
   require_dependency 'models/issue_query_patch'
   require_dependency 'helpers/issues_helper_patch'
   require_dependency 'helpers/projects_helper_patch'
-  require_dependency 'controllers/issues_controller_patch'
 end
 
 Redmine::Plugin.register :redmine_typologies do

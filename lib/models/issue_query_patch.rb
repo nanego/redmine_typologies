@@ -4,7 +4,7 @@ class IssueQuery
   self.available_columns << QueryColumn.new(:typology, :sortable => false, :groupable => true) if self.available_columns.select {|c| c.name == :typology}.empty?
 end
 
-module PluginAdditionalFilters
+module PluginTypologies
 
   module IssueQueryPatch
 
@@ -24,4 +24,4 @@ module PluginAdditionalFilters
 
 end
 
-IssueQuery.prepend PluginAdditionalFilters::IssueQueryPatch
+IssueQuery.prepend PluginTypologies::IssueQueryPatch

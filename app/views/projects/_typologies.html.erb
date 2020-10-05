@@ -11,7 +11,7 @@
     <tr>
       <th><%= l(:field_name) %></th>
       <th><%= toggle_checkboxes_link('input.enumerations_active') %> <%= l(:field_active) %></th>
-      <th><%= l(:field_tracker) %></th>
+      <th><%= l(:field_trackers) %></th>
     </tr>
     </thead>
 
@@ -27,11 +27,13 @@
                             {class: 'enumerations_active'} %>
         </td>
         <td class="tracker">
-          <%= select_tag "typologies_ids[#{typology.id}][tracker]",
+          <%= select_tag "typologies_ids[#{typology.id}][tracker_ids]",
                          options_from_collection_for_select(@project.trackers.sorted,
                                                             "id", "name",
-                                                            @project.tracker_for(typology: typology).try(:id)),
-                         include_blank: true
+                                                            @project.trackers_for(typology: typology).map(&:id)),
+                         include_blank: true,
+                         multiple: true,
+                         class: 'trackers_select'
           %>
         </td>
       </tr>
@@ -40,3 +42,13 @@
 
   <%= submit_tag l(:button_save) %>
 <% end %>
+
+<script type="text/javascript">
+    $(function () {
+        if ((typeof $().select2) === 'function') {
+            $('.trackers_select').select2({
+                containerCss: {width: 'auto'}
+            })
+        }
+    })
+</script>

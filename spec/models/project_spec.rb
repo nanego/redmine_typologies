@@ -30,16 +30,16 @@ RSpec.describe Project do
       expect(project.typologies).to eq [typo2]
     end
 
-    it 'can update tracker associated to typologies' do
+    it 'can update trackers associated to typologies' do
       expect(project.typologies).to eq [typo1, typo2]
-      expect(project.tracker_for(typology: typo1)).to be nil
-      expect(project.tracker_for(typology: typo2)).to be nil
+      expect(project.trackers_for(typology: typo1)).to be_empty
+      expect(project.trackers_for(typology: typo2)).to be_empty
 
-      project.update_typologies({typo1.id => {active: '1', tracker: tracker.id}})
+      project.update_typologies({typo1.id => {active: '1', tracker_ids: [tracker.id]}})
 
       expect(project.typologies).to eq [typo1, typo2]
-      expect(project.tracker_for(typology: typo1)).to eq tracker
-      expect(project.tracker_for(typology: typo2)).to be nil
+      expect(project.trackers_for(typology: typo1)).to eq [tracker]
+      expect(project.trackers_for(typology: typo2)).to be_empty
     end
 
   end
