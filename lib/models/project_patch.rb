@@ -16,8 +16,6 @@ class Project
   def update_typologies(values_by_typology)
     if values_by_typology.present?
       values_by_typology.each do |typology_id, values|
-        puts "typology_id : #{typology_id.inspect}"
-        puts "values : #{values.inspect}"
         project_typology = ProjectTypology.find_or_create_by(typology_id: typology_id,
                                                         project: self)
         project_typology.active = values[:active].present? && values[:active] == '1'

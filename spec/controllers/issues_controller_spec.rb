@@ -30,8 +30,10 @@ RSpec.describe IssuesController, type: :controller do
             :changesets,
             :watchers
 
-  let(:user) { User.find(1) }
-  let(:project) { Project.find(1) }
+  let!(:user) { User.find(1) }
+  let!(:project) { Project.find(1) }
+  let!(:typology_1) { Typology.create(name: "Typo1") }
+  let!(:typology_2) { Typology.create(name: "Typo2") }
 
   before do
     @request.session[:user_id] = 1
