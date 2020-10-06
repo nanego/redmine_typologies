@@ -1,5 +1,6 @@
 <% if @issue.safe_attribute?('typology_id') && (@project.present? && @project.module_enabled?(:typologies)) %>
-  <% typologies = @issue.project.project_typologies.reject { |t| t.trackers.present? && t.trackers.exclude?(@issue.tracker) }.map(&:typology) %>
+  <% typologies = @project.typologies.reject { |t| @project.trackers_for(typology: t).present? && @project.trackers_for(typology: t).exclude?(@issue.tracker) } %>
+
   <% if typologies.present? %>
     <p>
       <%= f.select :typology_id,

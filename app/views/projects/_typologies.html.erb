@@ -21,6 +21,7 @@
           <%= typology %>
         </td>
         <td>
+          <%= hidden_field_tag "typologies_ids[#{typology.id}][active]", '' %>
           <%= check_box_tag "typologies_ids[#{typology.id}][active]",
                             "1",
                             @project.excluded_typologies.exclude?(typology),
@@ -47,7 +48,7 @@
     $(function () {
         if ((typeof $().select2) === 'function') {
             $('.trackers_select').select2({
-                containerCss: {width: 'auto'}
+                containerCss: {width: 'auto', minWidth: '148px'}
             })
         }
     })
