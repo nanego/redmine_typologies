@@ -2,6 +2,10 @@ Redmine Typologies
 ===================
 
 This plugin adds a new Typology field to issues.
+It works as global categories.
+
+Typologies are set in the admin panel, as a list of values.
+Do not forget to activate the Typology module for each project.
 
 ## Test status
 
