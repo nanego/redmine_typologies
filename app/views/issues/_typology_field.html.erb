@@ -1,5 +1,5 @@
-<% if @issue.safe_attribute?('typology_id') && (@project.present? && @project.module_enabled?(:typologies)) %>
-  <% typologies = @project.typologies.reject { |t| @project.trackers_for(typology: t).present? && @project.trackers_for(typology: t).exclude?(@issue.tracker) } %>
+<% if @issue.safe_attribute?('typology_id') && (@issue.project.present? && @issue.project.module_enabled?(:typologies)) %>
+  <% typologies = @issue.project.typologies.reject { |t| @issue.project.trackers_for(typology: t).present? && @issue.project.trackers_for(typology: t).exclude?(@issue.tracker) } %>
 
   <% if typologies.present? %>
     <p>
