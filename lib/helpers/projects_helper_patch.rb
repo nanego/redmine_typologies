@@ -7,7 +7,12 @@ module PluginTypology
     def project_settings_tabs
       tabs = super
       if User.current.allowed_to?(:set_project_typologies, @project)
-        tabs << {name: 'typologies', action: :admin_typologies, partial: 'projects/typologies', label: :project_module_typologies}
+        typologies_tab = {name: 'typologies', action: :admin_typologies, partial: 'projects/typologies', label: :project_module_typologies}
+        if tabs.size > 6
+          tabs.insert(6, typologies_tab)
+        else
+          tabs << typologies_tab
+        end
       end
       tabs
     end
