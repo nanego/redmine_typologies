@@ -13,5 +13,9 @@ RSpec.describe Enumeration do
         expect(klass.superclass).to be Enumeration
       end
     end
+
+    it 'allows typology names to be longer than 30 characters' do
+      expect(Typology.new(:name => 'a' * 31).valid?).to be true
+    end
   end
 end
