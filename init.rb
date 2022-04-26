@@ -1,5 +1,4 @@
 ActiveSupport::Reloader.to_prepare do
-  require_dependency 'models/enumeration_patch'
   require_dependency 'models/issue_patch'
   require_dependency 'models/tracker_patch'
   require_dependency 'models/project_patch'
