@@ -5,6 +5,7 @@ ActiveSupport::Reloader.to_prepare do
   require_dependency 'models/issue_query_patch'
   require_dependency 'helpers/issues_helper_patch'
   require_dependency 'helpers/projects_helper_patch'
+  require_dependency 'typology' # Force load the subclasses of Enumeration
 end
 
 Redmine::Plugin.register :redmine_typologies do
