@@ -31,3 +31,42 @@ class Project
   end
 
 end
+
+module PluginTypologies
+  module ProjectModel
+    # Copies typologies from +project+
+    def copy_typologies(project)
+      # Prepare the hash in order to use the function update_typologies
+      hash_typologies = {}
+      project.project_typologies.each do |p_t|
+        hash_typologies[p_t.typology_id] = { :active => p_t.active ? '1' : '0', :tracker_ids => p_t.tracker_ids }
+      end
+      self.update_typologies(hash_typologies)
+    end
+
+    def copy(project, options={})
+      super
+      project = project.is_a?(Project) ? project : Project.find(project)
+
+      to_be_copied = %w(typologies)
+
+      to_be_copied = to_be_copied & Array.wrap(options[:only]) unless options[:only].nil?
+
+      Project.transaction do
+        if save
+          reload
+
+          to_be_copied.each do |name|
+            send "copy_#{name}", project
+          end
+
+          save
+        else
+          false
+        end
+      end
+    end
+  end
+end
+
+Project.prepend PluginTypologies::ProjectModel
