@@ -18,6 +18,7 @@ module PluginTypology
     end
 
     def render_api_includes(project, api)
+      super
       api.array :typologies do
         project.typologies.each do |typology|
           api.typology(:id => typology.id, :name => typology.name)
