@@ -17,6 +17,14 @@ module PluginTypology
       tabs
     end
 
+    def render_api_includes(project, api)
+      api.array :typologies do
+        project.typologies.each do |typology|
+          api.typology(:id => typology.id, :name => typology.name)
+        end
+      end if include_in_api_response?('typologies')
+      
+    end
   end
 
 end
