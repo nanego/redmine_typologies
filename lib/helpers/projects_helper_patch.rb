@@ -20,11 +20,13 @@ module PluginTypology
     def render_api_includes(project, api)
       super
       api.array :typologies do
-        project.typologies.each do |typology|
-          api.typology(:id => typology.id, :name => typology.name)
+        if project.module_enabled?("typologies")
+          project.typologies.each do |typology|
+            api.typology(:id => typology.id, :name => typology.name)
+          end
         end
       end if include_in_api_response?('typologies')
-      
+
     end
   end
 

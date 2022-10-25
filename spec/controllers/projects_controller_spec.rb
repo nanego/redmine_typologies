@@ -44,7 +44,10 @@ describe ProjectsController, :type => :controller do
 
     end
 
-    it "should display active typologies in project/show api" do
+    it "Should display active typologies in (project/show api) when module is enabled" do
+
+      source_project.enabled_module_names = ["issue_tracking", "typologies"]
+
       source_project.is_public = true;
       source_project.save
 
@@ -56,6 +59,24 @@ describe ProjectsController, :type => :controller do
 
       st_first = "{\"id\":#{typology_first.id},\"name\":\"#{typology_first.name}\"}"
       expect(response.body).to include(st_first)
+
+      st_second = "{\"id\":#{typology_second.id},\"name\":\"#{typology_second.name}\"}"
+      expect(response.body).not_to include(st_second)
+    end
+
+    it "Should not display any typologies in (project/show api) when module is disabled" do
+
+      source_project.is_public = true;
+      source_project.save
+
+      typology_first = Typology.first
+      typology_second = Typology.last
+
+      get :show, params: {:id => source_project.identifier, :include => ["typologies"], :format => 'json' }
+      expect(response).to have_http_status(200)
+
+      st_first = "{\"id\":#{typology_first.id},\"name\":\"#{typology_first.name}\"}"
+      expect(response.body).not_to include(st_first)
 
       st_second = "{\"id\":#{typology_second.id},\"name\":\"#{typology_second.name}\"}"
       expect(response.body).not_to include(st_second)
