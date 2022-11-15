@@ -17,7 +17,7 @@ https://redmine-url/issues/12345.json?key={apikey}&include=typologies
 
 |Plugin branch| Redmine Version   | Test Status      |
 |-------------|-------------------|------------------|
-|master       | 4.2.7             | [![4.2.7][1]][5] |  
+|master       | 4.2.7             | [![4.2.7][1]][5] |
 |master       | 4.1.7             | [![4.1.7][2]][5] |
 |master       | master            | [![master][4]][5]|
 
