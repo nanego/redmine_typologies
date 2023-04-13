@@ -24,8 +24,9 @@ class Issue
 
           #####
           # START PATCH
-          next if attribute == 'typology_id' && !project.module_enabled?('typologies')
-          next if attribute == 'typology_id' && project.typologies.blank?
+          if respond_to?( "validate_required_#{attribute}_field")
+            next if send("validate_required_#{attribute}_field", attribute)
+          end  
           # END PATCH
           #####
 
@@ -35,4 +36,8 @@ class Issue
     end
   end
 
+  def validate_required_typology_id_field(attribute)     
+    return attribute == 'typology_id' && !project.module_enabled?('typologies') 
+    return attribute == 'typology_id' && project.typologies.blank?
+  end
 end
