@@ -36,8 +36,10 @@ class Issue
     end
   end
 
-  def validate_required_typology_id_field(attribute)     
-    return attribute == 'typology_id' && !project.module_enabled?('typologies') 
-    return attribute == 'typology_id' && project.typologies.blank?
+  def validate_required_typology_id_field(attribute) 
+    return true if attribute == 'typology_id' && !project.module_enabled?('typologies')
+    return true if attribute == 'typology_id' && project.typologies.blank? 
+
+    return false
   end
 end
