@@ -1,5 +1,9 @@
 require_dependency "tracker"
 
+module RedmineTypologies::Models::TrackerPatch
+
+end
+
 class Tracker
 
   #Add typology_id to core fields 
