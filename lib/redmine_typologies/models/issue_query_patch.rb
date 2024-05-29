@@ -1,6 +1,6 @@
 require_dependency 'issue_query'
 
-class IssueQuery
+class IssueQuery < Query
   self.available_columns.reject! { |c| c.name == :priority }
   self.available_columns << QueryColumn.new(:priority, :sortable => "priorities.position", :default_order => 'desc', :groupable => true)
   self.available_columns << QueryColumn.new(:typology, :sortable => "typologies.position", :groupable => true) if self.available_columns.select { |c| c.name == :typology }.empty?
