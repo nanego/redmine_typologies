@@ -1,6 +1,6 @@
 <div class="contextual">
   <% if User.current.admin? %>
-    <%= link_to l(:label_administration), enumerations_path, :class => "icon icon-settings" %>
+    <%= link_to sprite_icon('settings', l(:label_administration)), enumerations_path %>
   <% end %>
 </div>
 
